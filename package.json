@@ -19,6 +19,7 @@
   },
   "devDependencies": {
     "@types/chai": "^4.1.0",
+    "@types/isomorphic-fetch": "^0.0.34",
     "@types/mocha": "^5.2.4",
     "@vue/cli-plugin-babel": "^3.3.0",
     "@vue/cli-plugin-e2e-nightwatch": "^3.3.0",
@@ -28,8 +29,10 @@
     "@vue/cli-service": "^3.3.0",
     "@vue/test-utils": "^1.0.0-beta.20",
     "chai": "^4.1.2",
+    "isomorphic-fetch": "^2.2.1",
     "node-sass": "^4.9.0",
     "sass-loader": "^7.0.1",
+    "ts-node": "^8.0.1",
     "typescript": "^3.0.0",
     "vue-template-compiler": "^2.5.21"
   }
