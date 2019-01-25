@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from "vue-property-decorator";
+import { Vue, Component } from 'vue-property-decorator';
 import router from '@/router';
 
 @Component({})
@@ -21,21 +21,14 @@ export default class Auth extends Vue {
   private async login() {
     try {
       const token = await this.$api.login(this.email, this.pass);
-      this.alertMessage = false;
       if (token) { localStorage.setItem('token', token); }
+
+      this.alertMessage = false;
       router.push('/list');
     } catch {
       this.alertMessage = true;
     }
   }
-
 }
 </script>
-
-
-<style lang="scss" scoped>
-.desc_hide {
-  display: none;
-}
-</style>
 
