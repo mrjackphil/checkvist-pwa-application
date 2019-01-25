@@ -1,4 +1,4 @@
-import { Order, Checklist } from './datatypes';
+import { Checklist, ChecklistOptions } from './datatypes';
 
 export default abstract class IFetcher {
 	basePath: string = this.basePath;
@@ -7,7 +7,7 @@ export default abstract class IFetcher {
 
 	// userInfo: () => Promise<string> | undefined = this.userInfo;
 
-	checklists: (archived?: boolean, order?: Order, skip_stats?: boolean) => Promise<Checklist[]> | undefined = this.checklists;
+	checklists: (opt?: ChecklistOptions) => Promise<Checklist[]> | undefined = this.checklists;
 	// checklistInfo: (id: number) => Promise<Checklist> | undefined = this.checklistInfo;
 	// checklistCreate: (name: string, isPublic?: 0 | 1) => Promise<Checklist> | undefined = this.checklistCreate;
 	// checklistUpdate: (id: number, name: string, isPublic?: 0 | 1) => Promise<Checklist> | undefined = this.checklistUpdate;

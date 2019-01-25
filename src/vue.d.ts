@@ -1,4 +1,4 @@
-import IFetcher from './entities/fetch';
+import IFetcher from './entities/api';
 import Vue from 'vue';
 
 declare module 'vue/types/vue' {
