@@ -10,7 +10,7 @@ Vue.config.productionTip = false;
 Vue.prototype.$api = new Fetcher({ basePath: 'https://beta.checkvist.com/' });
 
 router.beforeEach((to, from, next) => {
-  if (to.matched.some(record => record.meta.auth)) {
+  if (to.matched.some((record) => record.meta.auth)) {
     if (localStorage.getItem('token') == null) {
       next({
         path: '/'
@@ -26,5 +26,5 @@ router.beforeEach((to, from, next) => {
 new Vue({
   router,
   store,
-  render: h => h(App)
+  render: (h) => h(App)
 }).$mount('#app');

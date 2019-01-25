@@ -10,13 +10,13 @@ export default new Router({
     {
       path: '/',
       name: 'login',
-	  component: Auth,
-	},
+      component: Auth
+    },
     {
       path: '/list',
       name: 'list',
-	  component: List,
-	  meta: { auth: true }
-    }
-  ],
+      component: List,
+      meta: { auth: true }
+    },
+  ]
 });

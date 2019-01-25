@@ -1,5 +1,5 @@
-export type Methods = "post" | "get";
-export type Order = "id:asc" | "id:desc" | "updated_at:asc";
+export type Methods = 'post' | 'get';
+export type Order = 'id:asc' | 'id:desc' | 'updated_at:asc';
 export type Role = 1 | 2 | 3;
 
 export interface Checklist {
@@ -8,7 +8,7 @@ export interface Checklist {
   public: boolean;
   role: Role;
   updated_at: string;
-  tags: Tags;
+  tags: {};
   tags_as_text: string;
   task_count: number;
   read_only: boolean;
@@ -25,7 +25,7 @@ export interface Task {
   position: number;
   deleted?: boolean;
   tasks: number[];
-  tags: Tags;
+  tags: {};
   tags_as_text: string;
   update_line: string;
   updated_at: string;
@@ -42,7 +42,7 @@ export interface Note {
   created_at: string;
 }
 
-export interface Tags {}
+// export interface Tags {}
 
 export interface ChecklistOptions {
   archived?: boolean;
