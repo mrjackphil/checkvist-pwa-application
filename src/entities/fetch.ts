@@ -1,49 +1,4 @@
-type Methods = 'post' | 'get';
-type Order = 'id:asc' | 'id:desc' | 'updated_at:asc';
-
-interface Checklist {
-	id: number,
-	name: string,
-	public: boolean,
-	role: 1 | 2 | 3,
-	updated_at: string,
-	tags: Tags,
-	tags_as_text: string,
-	task_count: number,
-	read_only: boolean,
-	archived?: boolean
-}
-
-interface Task {
-	id: number,
-	content: string, // Task content
-	status: 0 | 1 | 2,
-	checklist_id: number,
-	parent_id: number,
-	comments_count: number,
-	position: number,
-	deleted?: boolean,
-	tasks: number[],
-	tags: Tags,
-	tags_as_text: string,
-	update_line: string,
-	updated_at: string,
-	notes: string
-}
-
-interface Note {
-	id: number,
-	comment: string,
-	task_id: number,
-	user_id: number,
-	username: string,
-	updated_at: string,
-	created_at: string
-}
-
-interface Tags {
-
-}
+import { Order, Checklist } from './datatypes';
 
 export default abstract class IFetcher {
 	basePath: string = this.basePath;
@@ -52,7 +7,7 @@ export default abstract class IFetcher {
 
 	// userInfo: () => Promise<string> | undefined = this.userInfo;
 
-	// checklists: (archived?: boolean, order?: Order, skip_stats?: boolean) => Promise<Checklist[]> | undefined = this.checklists;
+	checklists: (archived?: boolean, order?: Order, skip_stats?: boolean) => Promise<Checklist[]> | undefined = this.checklists;
 	// checklistInfo: (id: number) => Promise<Checklist> | undefined = this.checklistInfo;
 	// checklistCreate: (name: string, isPublic?: 0 | 1) => Promise<Checklist> | undefined = this.checklistCreate;
 	// checklistUpdate: (id: number, name: string, isPublic?: 0 | 1) => Promise<Checklist> | undefined = this.checklistUpdate;
