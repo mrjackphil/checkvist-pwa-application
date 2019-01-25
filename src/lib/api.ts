@@ -1,7 +1,7 @@
 import IFetcher from "@/entities/fetch";
 import axios from "axios";
 import { jsonToFormData } from "./data";
-import { Order, Checklist, Role } from "@/entities/datatypes";
+import { Order } from "@/entities/datatypes";
 
 export default class Fetcher implements IFetcher {
   basePath: string;
@@ -22,7 +22,6 @@ export default class Fetcher implements IFetcher {
   }
 
   private async get(u: string) {
-    const login = localStorage.getItem("email");
     const token = localStorage.getItem("token");
     const promise = await axios({
       method: "get",
@@ -38,7 +37,7 @@ export default class Fetcher implements IFetcher {
     const lsKey = (s: string): string => {
       const t = localStorage.getItem(s);
       return !!t ? t : "";
-	};
+    };
 
     const authToken = (o: { [key: string]: string | null }) =>
       Object.defineProperty(o, "token", lsKey("token"));

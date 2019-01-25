@@ -1,19 +1,19 @@
-import Vue from "vue";
-import App from "./App.vue";
-import router from "./router";
-import store from "./store";
-import "./registerServiceWorker";
-import Fetcher from "./lib/api";
+import Vue from 'vue';
+import App from './App.vue';
+import router from './router';
+import store from './store';
+import './registerServiceWorker';
+import Fetcher from './lib/api';
 
 Vue.config.productionTip = false;
 
-Vue.prototype.$api = new Fetcher({ basePath: "https://beta.checkvist.com/" });
+Vue.prototype.$api = new Fetcher({ basePath: 'https://beta.checkvist.com/' });
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.auth)) {
-    if (localStorage.getItem("token") == null) {
+    if (localStorage.getItem('token') == null) {
       next({
-        path: "/"
+        path: '/'
       });
     } else {
       next();
@@ -27,4 +27,4 @@ new Vue({
   router,
   store,
   render: h => h(App)
-}).$mount("#app");
+}).$mount('#app');
