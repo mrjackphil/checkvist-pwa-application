@@ -9,13 +9,14 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: '',
-      component: Auth,
+      name: 'login',
+	  component: Auth,
 	},
     {
       path: '/list',
-      name: '',
-      component: List,
+      name: 'list',
+	  component: List,
+	  meta: { auth: true }
     }
   ],
 });

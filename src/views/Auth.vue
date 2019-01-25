@@ -2,28 +2,33 @@
   <div>
     <div name="title">Checkvist</div>
     <div v-show="alertMessage" name="description">Invalid email/password combination</div>
-    <input type="email" name="email" placeholder="Your checkvist email">
-    <input type="password" name="password" placeholder="Your checkvist password">
+    <input v-model="email" type="email" name="email" placeholder="Your checkvist email">
+    <input v-model="pass" type="password" name="password" placeholder="Your checkvist password">
     <button name="login" @click="login">Login</button>
   </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
-import Fetcher from '@/lib/fetch';
+import router from '@/router';
 
 @Component({})
 export default class Auth extends Vue {
   private alertMessage = false;
+  private email = '';
+  private pass = '';
 
-  private mounted() {
-	  //@ts-ignore
-	  window.f = new Fetcher;
+  private async login() {
+    try {
+      const token = await this.$api.login(this.email, this.pass);
+      this.alertMessage = false;
+      if (token) { localStorage.setItem('token', token); }
+      router.push('/list');
+    } catch {
+      this.alertMessage = true;
+    }
   }
 
-  private login() {
-	  this.alertMessage = true;
-  }
 }
 </script>
 
