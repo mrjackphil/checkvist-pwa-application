@@ -21,7 +21,10 @@ export default class Auth extends Vue {
   private async login() {
     try {
       const token = await this.$api.login(this.email, this.pass);
-      if (token) { localStorage.setItem('token', token); }
+      if (token) {
+		  localStorage.setItem('email', this.email);
+		  localStorage.setItem('token', token);
+		}
 
       this.alertMessage = false;
       router.push('/list');
