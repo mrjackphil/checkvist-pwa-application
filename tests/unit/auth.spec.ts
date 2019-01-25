@@ -1,6 +1,5 @@
 import { expect } from 'chai';
 import { mount } from '@vue/test-utils';
-import authData from './test-auth';
 import Auth from '@/views/Auth.vue';
 
 describe('Check authorization fields', () => {
@@ -25,12 +24,5 @@ describe('Check submit button', () => {
 	component.find('input[name="password"]').setValue('nogn@ngal.ru');
     component.find('button[name="login"]').trigger('click');
     expect(component.find('[name="description"]').isVisible()).eq(true);
-  });
-  it('If input right [name=title] must be List', () => {
-	const component = mount(Auth);
-	component.find('input[name="email"]').setValue(authData.email);
-	component.find('input[name="password"]').setValue(authData.pass);
-	component.find('button[name="login"]').trigger('click');
-	expect(component.find('[name="title"]').text()).equal('List');
   });
 });
