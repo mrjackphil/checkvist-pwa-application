@@ -1,40 +1,35 @@
-import IFetcher, { FetcherOptions } from '@/entities/fetch';
+import IFetcher from '@/entities/fetch';
+import axios from 'axios';
 import { jsonToFormData } from './data';
-import fetch from 'isomorphic-fetch';
 
 export default class Fetcher implements IFetcher {
 	basePath: string;
-	constructor( b?: FetcherOptions) {
-		this.basePath = b ? b.basePath : 'https://checkvist.com/';
+	constructor( opt?: { basePath: string }) {
+		this.basePath = opt ? opt.basePath : 'https://checkvist.com/';
+		this.init();
 	}
 
-	private async get(u: string, opt: RequestInit) {
-		return fetch(this.basePath + u, opt).then( r => {
-			if (r.status !== 200) {
-				throw `${r.status} ${r.statusText}`;
-			} else {
-				return r;
-			}
-		});
+	private init() {
+		axios.defaults.baseURL = this.basePath;
+		axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+	}
+
+	private async get(u: string, opt: any) {
+		const promise = await axios.post(u, jsonToFormData(opt));
+		return promise.data;
 	}
 
 	async login(u: string, k: string) {
-		const f = jsonToFormData({
+		return this.get('auth/login.json', {
 			username: u,
 			remote_key: k
 		});
-		return this.get('auth/login.json', {
-			method: 'post',
-			body: f
-		}).then( res => res.text() );
 	}
 
 	async refreshToken(t: string) {
-		const f = jsonToFormData({ old_token: t });
 		return this.get('auth/refresh_token.json', {
-			method: 'post',
-			body: f
-		}).then( res => res.text());
+			old_token: t
+		});
 	}
 
 }

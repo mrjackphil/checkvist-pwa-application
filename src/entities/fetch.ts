@@ -45,14 +45,10 @@ interface Tags {
 
 }
 
-export interface FetcherOptions {
-	basePath: string
-}
-
 export default abstract class IFetcher {
 	basePath: string = this.basePath;
-	login: (method: Methods, username: string, remote_key: string) => Promise<string> | undefined = this.login;
-	refreshToken: (method: Methods, old_token: string) => Promise<string> | undefined = this.refreshToken;
+	login: (username: string, remote_key: string) => Promise<string> | undefined = this.login;
+	refreshToken: (old_token: string) => Promise<string> | undefined = this.refreshToken;
 
 	// userInfo: () => Promise<string> | undefined = this.userInfo;
 
