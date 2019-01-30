@@ -24,8 +24,12 @@ export default class Fetcher implements IFetcher {
   }
 
   public async checklists(opt?: ChecklistOptions) {
-    return this.get('/checklists.json', opt);
-  }
+    return this.get('checklists.json', opt);
+	}
+
+	public async checklistCreate(s: string, isPublic?: 0 | 1) {
+		return this.post('checklists.json', {name: s, public: isPublic});
+	}
 
   private init() {
     axios.defaults.baseURL = this.basePath;
