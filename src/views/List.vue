@@ -1,8 +1,8 @@
 <template>
   <div>
     <div name="title" class='list-title'>List</div>
-    <input v-if="input" name="add">
-    <pull-to :top-load-method="add"
+    <input v-if="input" name="add" @keydown.enter="add" v-model="newtask">
+    <pull-to :top-load-method="showAdd"
              :top-block-height="60"
              @top-state-change="hideAdd"
              :top-config="pullConfig"
@@ -26,7 +26,8 @@ import PullTo from 'vue-pull-to';
 @Component({ components: { TaskList, CreateTask, PullTo } })
 export default class List extends Vue {
   private checklists: Checklist[] = [];
-  private input: boolean = false;
+	private input: boolean = false;
+	private newtask: string = '';
   private pullConfig = {
     pullText: 'Pull down to create new list',
     triggerText: 'Release to create new list',
@@ -48,14 +49,17 @@ export default class List extends Vue {
     }
   }
 
-  private add(loaded: (s: string) => void) {
+  private showAdd(loaded: (s: string) => void) {
     this.input = true;
     loaded('done');
   }
 
   private hideAdd(val: any) {
     if (val && val !== 'loaded-done' && val !== 'trigger') this.input = false;
-  }
+	}
+
+	private add() {
+	}
 }
 </script>
 
