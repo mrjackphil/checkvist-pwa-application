@@ -52,16 +52,14 @@ export default class Fetcher implements IFetcher {
   }
 
   private async post(u: string, opt: any) {
-    const lsKey = (s: string): string => {
-      const t = localStorage.getItem(s);
-      return !!t ? t : '';
-    };
-
-    const authToken = (o: { [key: string]: string | null }) =>
-      Object.defineProperty(o, 'token', lsKey('token'));
-
-    const promise = await axios.post(u, {
-      data: jsonToFormData(authToken(opt))
+    const t = localStorage.getItem('token');
+    const promise = await axios({
+      method: 'post',
+      url: u,
+      params: {
+        token: t,
+        ...opt
+      }
     });
     return promise.data;
   }
