@@ -1,8 +1,14 @@
 <template>
   <div>
-    <div name="title">List</div>
+    <div name="title" class='list-title'>List</div>
+    <input v-if="input" name="add">
+    <pull-to :top-load-method="add"
+             :top-block-height="60"
+             @top-state-change="hideAdd"
+             :top-config="pullConfig"
+             :distance-index="20">
     <task-list :list="checklists"></task-list>
-    <create-task></create-task>
+    </pull-to>
   </div>
 </template>
 
@@ -14,9 +20,20 @@ import Fetcher from '@/entities/api';
 import TaskList from './components/TaskList.vue';
 import CreateTask from './components/CreateTask.vue';
 
-@Component({ components: { TaskList, CreateTask } })
+// @ts-ignore
+import PullTo from 'vue-pull-to';
+
+@Component({ components: { TaskList, CreateTask, PullTo } })
 export default class List extends Vue {
   private checklists: Checklist[] = [];
+  private input: boolean = false;
+  private pullConfig = {
+    pullText: 'Pull down to create new list',
+    triggerText: 'Release to create new list',
+    triggerDistance: 15,
+    stayDistance: 0,
+    doneText: ''
+  };
 
   private mounted() {
     this.load();
@@ -25,13 +42,35 @@ export default class List extends Vue {
   private async load() {
     try {
       const checklists = await this.$api.checklists();
-      if (checklists) {
-        this.checklists = checklists;
-      }
+      if (checklists) { this.checklists = checklists; }
     } catch {
-      alert('Problem with loading checklists');
+      this.flash('Data not loaded', 'error');
     }
+  }
+
+  private add(loaded: (s: string) => void) {
+    this.input = true;
+    loaded('done');
+  }
+
+  private hideAdd(val: any) {
+    if (val && val !== 'loaded-done' && val !== 'trigger') this.input = false;
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.list-title {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+</style>
+
+<style lang="scss">
+.action-block {
+  pointer-events: none;
+}
+</style>
+
 
