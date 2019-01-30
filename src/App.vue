@@ -1,6 +1,7 @@
 <template>
   <div id="app">
 	<router-view/>
+	<flash-message class="flash"></flash-message>
   </div>
 </template>
 
@@ -25,5 +26,10 @@
       color: #42b983;
     }
   }
+}
+.flash {
+	position: fixed;
+	top: 0;
+	right: 0;
 }
 </style>
