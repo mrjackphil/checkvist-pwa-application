@@ -19,9 +19,17 @@ describe('Testing base functions', () => {
         if (r.token === 'sometoken') {
           return done();
         } else {
-          return done(r);
+          throw (Error('Token unregonized'));
         }
       }
     ).catch( (err) => done(err));
+  });
+
+  it('test checklist add function', (done) => {
+    mock.onPost('https://beta.checkvist.com/checklists.json').reply( 200);
+
+    api.checklistCreate('name')
+      .then( () => { done(); })
+      .catch( (err) => done(err) );
   });
 });
