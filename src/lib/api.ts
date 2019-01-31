@@ -1,15 +1,14 @@
 import IFetcher from '@/entities/api';
-import axios from 'axios';
+import { axios } from './axios';
 import { jsonToFormData } from './data';
 import { ChecklistOptions } from '@/entities/datatypes';
+import { AxiosInstance } from 'axios';
 
 export default class Fetcher implements IFetcher {
-  public basePath: string;
-  constructor(opt?: { basePath: string }) {
-    this.basePath = opt ? opt.basePath : 'https://checkvist.com/';
-    this.init();
-  }
-
+	public adapter: AxiosInstance
+	constructor() {
+		this.adapter = axios;
+	}
   public async login(u: string, k: string) {
     return this.authPost('auth/login.json', {
       username: u,
@@ -31,20 +30,14 @@ export default class Fetcher implements IFetcher {
 		return this.post('checklists.json', {name: s, public: isPublic});
 	}
 
-  private init() {
-    axios.defaults.baseURL = this.basePath;
-    axios.defaults.headers.post['Content-Type'] =
-      'application/x-www-form-urlencoded';
-  }
-
   private async authPost(url: string, opt: any) {
-    const promise = await axios.post(url, jsonToFormData(opt));
+    const promise = await this.adapter.post(url, jsonToFormData(opt));
     return promise.data;
   }
 
   private async get(u: string, o?: any) {
     const t = localStorage.getItem('token');
-    const promise = await axios({
+    const promise = await this.adapter({
       method: 'get',
       url: u,
       params: {
@@ -57,7 +50,7 @@ export default class Fetcher implements IFetcher {
 
   private async post(u: string, opt: any) {
     const t = localStorage.getItem('token');
-    const promise = await axios({
+    const promise = await this.adapter({
       method: 'post',
       url: u,
       params: {

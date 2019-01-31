@@ -1,7 +1,6 @@
 import { Checklist, ChecklistOptions } from './datatypes';
 
 export default abstract class IFetcher {
-  public basePath: string = this.basePath;
   public login: (
     username: string,
     token: string

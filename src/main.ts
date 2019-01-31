@@ -12,7 +12,7 @@ Vue.use(VueFlashMessage);
 
 Vue.config.productionTip = false;
 
-Vue.prototype.$api = new Fetcher({ basePath: 'https://beta.checkvist.com/' });
+Vue.prototype.$api = new Fetcher();
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some((record) => record.meta.auth)) {
