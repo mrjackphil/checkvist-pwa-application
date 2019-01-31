@@ -19,9 +19,9 @@ Vue.config.productionTip = false;
 Vue.prototype.$api = new Fetcher();
 Vue.directive('focus', {
   inserted: (el) => {
-    el.focus()
+    el.focus();
   }
-})
+});
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some((record) => record.meta.auth)) {
