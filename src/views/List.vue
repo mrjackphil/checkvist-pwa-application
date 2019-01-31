@@ -62,9 +62,17 @@ export default class List extends Vue {
     if (val && val !== 'loaded-done' && val !== 'trigger') { this.input = false; }
   }
 
-  private add() {
-    this.flash('List created', 'info');
-    this.hideAdd('hide');
+  private async add() {
+		try {
+			var list = await this.$api.checklistCreate(this.newtask);
+		} catch(err) {
+			throw Error(err);
+		}
+
+		this.newtask = '';
+		this.hideAdd('hide');
+		this.flash('List created', 'info');
+		this.load();
   }
 }
 </script>

@@ -28,7 +28,7 @@ export default class Fetcher implements IFetcher {
   }
 
   public async checklistCreate(s: string, isPublic?: 0 | 1) {
-    return this.post('checklists.json', {name: s, public: isPublic});
+    return this.post('checklists.json', {checklist: {name: s, public: isPublic} });
   }
 
   private async authPost(url: string, opt: any) {
@@ -54,7 +54,7 @@ export default class Fetcher implements IFetcher {
     const promise = await this.adapter({
       method: 'post',
       url: u,
-      params: {
+      data: {
         token: t,
         ...opt
       }
