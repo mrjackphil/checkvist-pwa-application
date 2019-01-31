@@ -10,7 +10,7 @@ import VueFlashMessage from 'vue-flash-message';
 
 Vue.use(VueFlashMessage, {
   messageOptions: {
-    timeout: 3000,
+    timeout: 2000,
   }
 });
 

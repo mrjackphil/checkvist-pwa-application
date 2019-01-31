@@ -34,4 +34,14 @@
 	top: 0;
 	right: 0;
 }
+
+.flash__message {
+	animation: hide 1s 2s forwards;
+
+}
+
+@keyframes hide {
+	from	{ opacity: 1;	}
+	to 		{ opacity: 0; }
+}
 </style>
