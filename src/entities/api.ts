@@ -18,7 +18,7 @@ export default abstract class IFetcher {
     Promise<Checklist> | undefined = this.checklistCreate;
   // checklistUpdate: (id: number, name: string, isPublic?: 0 | 1) =>
     // Promise<Checklist> | undefined = this.checklistUpdate;
-  // checklistDelete: (id: number) => Promise<Checklist> | undefined = this.checklistDelete;
+  public checklistDelete: (id: number) => Promise<Checklist> | undefined = this.checklistDelete;
 
   // task: (checklistId: number, taskId: number, with_notes?: boolean) =>
   // 	Promise<Task> | undefined = this.task;

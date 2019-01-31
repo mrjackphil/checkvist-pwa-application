@@ -31,6 +31,11 @@ export default class Fetcher implements IFetcher {
     return this.post('checklists.json', {checklist: {name: s, public: isPublic} });
   }
 
+	public async checklistDelete(id: number) {
+		return await this.adapter.delete(`checklists/${id}.json?token=${cookie.get('token')}`)
+			.then( (r) => r.data);
+	}
+
   private async authPost(url: string, opt: any) {
     const promise = await this.adapter.post(url, jsonToFormData(opt));
     return promise.data;
