@@ -8,8 +8,7 @@ beforeEach( 'name', () => {
   Vue.prototype.flash = () => '';
 }),
 
-describe('Basic list checks', () => {
-
+describe('Input behavior checking', () => {
   it('Is there add task input?', () => {
     const wrapper = shallowMount(List);
     wrapper.setData({ input: true });
@@ -29,7 +28,7 @@ describe('Basic list checks', () => {
     const input = wrap.find('input[name="add"]');
     input.setValue('New task example');
     input.trigger('keydown.enter');
-    assert(spy.called === true);
+    expect(spy.called).to.be.true;
   });
 
   it('Will it change newtask variable when type input', () => {
@@ -39,4 +38,10 @@ describe('Basic list checks', () => {
     expect(wrap.vm.$data.newtask === 'Example');
   });
 
+  it('Must hide when lose focus', () => {
+    const wrap = shallowMount(List);
+    wrap.setData({input: true});
+    wrap.find('input[name="add"]').trigger('blur');
+    expect(wrap.vm.$data.input).to.be.false;
+  });
 });

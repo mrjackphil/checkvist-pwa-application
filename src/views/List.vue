@@ -1,7 +1,7 @@
 <template>
   <div>
     <div name="title" class='list-title'>List</div>
-    <input v-if="input" name="add" @keydown.enter="add" v-model="newtask">
+    <input v-if="input" name="add" @keydown.enter="add" v-model="newtask" @blur="hideAdd">
     <pull-to :top-load-method="showAdd"
              :top-block-height="60"
              @top-state-change="hideAdd"
