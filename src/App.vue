@@ -7,6 +7,14 @@
 
 <style lang="scss">
 @import '../node_modules/vue-flash-message/dist/vue-flash-message.min.css';
+@import '../node_modules/vue-swipe-actions/dist/vue-swipe-actions.css';
+@import url('https://use.fontawesome.com/releases/v5.7.0/css/all.css');
+
+body {
+	* {
+		box-sizing: content-box;
+	}
+}
 
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -17,6 +25,10 @@
   position: fixed;
   width: 100%;
   height: 100%;
+	top: 0;
+	left: 0;
+	overflow-y: auto;
+	overflow-x: hidden;
 }
 
 #nav {

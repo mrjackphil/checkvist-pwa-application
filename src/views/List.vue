@@ -12,7 +12,8 @@
              @top-state-change="hideAdd"
              :top-config="pullConfig"
              :distance-index="20">
-    <task-list :list="checklists"></task-list>
+    <!-- <task-list :list="checklists"></task-list> -->
+    <swipe-action-list :items="checklists"></swipe-action-list>
     </pull-to>
   </div>
 </template>
@@ -26,8 +27,9 @@ import TaskList from './components/TaskList.vue';
 
 // @ts-ignore
 import PullTo from 'vue-pull-to';
+import SwipeActionList from './components/SwipeList.vue';
 
-@Component({ components: { TaskList, PullTo } })
+@Component({ components: { TaskList, PullTo, SwipeActionList } })
 export default class List extends Vue {
   private checklists: Checklist[] = [];
   private input: boolean = false;
@@ -63,16 +65,16 @@ export default class List extends Vue {
   }
 
   private async add() {
-		try {
-			var list = await this.$api.checklistCreate(this.newtask);
-		} catch(err) {
-			throw Error(err);
-		}
+    try {
+      var list = await this.$api.checklistCreate(this.newtask);
+    } catch(err) {
+      throw Error(err);
+    }
 
-		this.newtask = '';
-		this.hideAdd('hide');
-		this.flash('List created', 'info');
-		this.load();
+    this.newtask = '';
+    this.hideAdd('hide');
+    this.flash('List created', 'info');
+    this.load();
   }
 }
 </script>
@@ -90,5 +92,3 @@ export default class List extends Vue {
   pointer-events: none;
 }
 </style>
-
-
