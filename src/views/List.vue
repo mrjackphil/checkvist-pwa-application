@@ -1,7 +1,12 @@
 <template>
   <div>
     <div name="title" class='list-title'>List</div>
-    <input v-if="input" name="add" @keydown.enter="add" v-model="newtask" @blur="hideAdd">
+    <input  v-if="input"
+            v-model="newtask"
+            v-focus
+            name="add"
+            @keydown.enter="add"
+            @blur="hideAdd">
     <pull-to :top-load-method="showAdd"
              :top-block-height="60"
              @top-state-change="hideAdd"
@@ -18,12 +23,11 @@ import { Checklist } from '@/entities/datatypes';
 import Fetcher from '@/entities/api';
 
 import TaskList from './components/TaskList.vue';
-import CreateTask from './components/CreateTask.vue';
 
 // @ts-ignore
 import PullTo from 'vue-pull-to';
 
-@Component({ components: { TaskList, CreateTask, PullTo } })
+@Component({ components: { TaskList, PullTo } })
 export default class List extends Vue {
   private checklists: Checklist[] = [];
   private input: boolean = false;
@@ -60,6 +64,7 @@ export default class List extends Vue {
 
   private add() {
     this.flash('List created', 'info');
+    this.hideAdd('hide');
   }
 }
 </script>

@@ -8,11 +8,20 @@ import cookie from 'js-cookie';
 // @ts-ignore
 import VueFlashMessage from 'vue-flash-message';
 
-Vue.use(VueFlashMessage);
+Vue.use(VueFlashMessage, {
+  messageOptions: {
+    timeout: 3000,
+  }
+});
 
 Vue.config.productionTip = false;
 
 Vue.prototype.$api = new Fetcher();
+Vue.directive('focus', {
+  inserted: (el) => {
+    el.focus()
+  }
+})
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some((record) => record.meta.auth)) {
