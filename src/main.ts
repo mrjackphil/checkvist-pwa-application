@@ -4,6 +4,7 @@ import router from './router';
 import store from './store';
 import './registerServiceWorker';
 import Fetcher from './lib/api';
+import cookie from 'js-cookie';
 // @ts-ignore
 import VueFlashMessage from 'vue-flash-message';
 
@@ -15,7 +16,7 @@ Vue.prototype.$api = new Fetcher();
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some((record) => record.meta.auth)) {
-    if (localStorage.getItem('token') == null) {
+    if (cookie.get('token') == null) {
       next({
         path: '/'
       });

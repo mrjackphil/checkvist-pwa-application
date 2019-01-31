@@ -3,6 +3,7 @@ import { axios } from './axios';
 import { jsonToFormData } from './data';
 import { ChecklistOptions } from '@/entities/datatypes';
 import { AxiosInstance } from 'axios';
+import cookie from 'js-cookie';
 
 export default class Fetcher implements IFetcher {
   public adapter: AxiosInstance;
@@ -36,7 +37,7 @@ export default class Fetcher implements IFetcher {
   }
 
   private async get(u: string, o?: any) {
-    const t = localStorage.getItem('token');
+    const t = cookie.get('token');
     const promise = await this.adapter({
       method: 'get',
       url: u,
@@ -49,7 +50,7 @@ export default class Fetcher implements IFetcher {
   }
 
   private async post(u: string, opt: any) {
-    const t = localStorage.getItem('token');
+    const t = cookie.get('token');
     const promise = await this.adapter({
       method: 'post',
       url: u,

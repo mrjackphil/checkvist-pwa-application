@@ -11,6 +11,7 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
 import router from '@/router';
+import cookie from 'js-cookie';
 
 @Component({})
 export default class Auth extends Vue {
@@ -22,10 +23,9 @@ export default class Auth extends Vue {
     try {
       const token = await this.$api.login(this.email, this.pass);
       if (token) {
-        localStorage.setItem('email', this.email);
-        localStorage.setItem('token', token);
+        cookie.set('email', this.email, { secure: false });
+        cookie.set('token', token, { secure: false });
       }
-
       this.alertMessage = false;
       router.push('/list');
     } catch {
