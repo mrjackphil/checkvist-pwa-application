@@ -6,6 +6,8 @@
 </template>
 
 <style lang="scss">
+@import '../node_modules/vue-flash-message/dist/vue-flash-message.min.css';
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

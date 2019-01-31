@@ -7,7 +7,7 @@ import { Vue, Component } from 'vue-property-decorator';
 
 @Component({})
 export default class CreateTask extends Vue {
-  click(){
+  private click() {
     this.flash('Test', 'error');
   }
 }

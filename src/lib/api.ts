@@ -5,10 +5,10 @@ import { ChecklistOptions } from '@/entities/datatypes';
 import { AxiosInstance } from 'axios';
 
 export default class Fetcher implements IFetcher {
-	public adapter: AxiosInstance
-	constructor() {
-		this.adapter = axios;
-	}
+  public adapter: AxiosInstance;
+  constructor() {
+    this.adapter = axios;
+  }
   public async login(u: string, k: string) {
     return this.authPost('auth/login.json', {
       username: u,
@@ -24,11 +24,11 @@ export default class Fetcher implements IFetcher {
 
   public async checklists(opt?: ChecklistOptions) {
     return this.get('checklists.json', opt);
-	}
+  }
 
-	public async checklistCreate(s: string, isPublic?: 0 | 1) {
-		return this.post('checklists.json', {name: s, public: isPublic});
-	}
+  public async checklistCreate(s: string, isPublic?: 0 | 1) {
+    return this.post('checklists.json', {name: s, public: isPublic});
+  }
 
   private async authPost(url: string, opt: any) {
     const promise = await this.adapter.post(url, jsonToFormData(opt));

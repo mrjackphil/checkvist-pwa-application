@@ -26,8 +26,8 @@ import PullTo from 'vue-pull-to';
 @Component({ components: { TaskList, CreateTask, PullTo } })
 export default class List extends Vue {
   private checklists: Checklist[] = [];
-	private input: boolean = false;
-	private newtask: string = '';
+  private input: boolean = false;
+  private newtask: string = '';
   private pullConfig = {
     pullText: 'Pull down to create new list',
     triggerText: 'Release to create new list',
@@ -55,11 +55,12 @@ export default class List extends Vue {
   }
 
   private hideAdd(val: any) {
-    if (val && val !== 'loaded-done' && val !== 'trigger') this.input = false;
-	}
+    if (val && val !== 'loaded-done' && val !== 'trigger') { this.input = false; }
+  }
 
-	private add() {
-	}
+  private add() {
+    this.flash('List created', 'info');
+  }
 }
 </script>
 
