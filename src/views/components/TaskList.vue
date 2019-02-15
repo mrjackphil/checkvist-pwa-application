@@ -5,9 +5,9 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from 'vue-property-decorator';
-import { Checklist } from '@/entities/datatypes';
-import Task from './Task.vue';
+import { Vue, Component, Prop } from "vue-property-decorator";
+import { Checklist } from "@/entities/datatypes";
+import Task from "./Task.vue";
 
 @Component({ components: { Task } })
 export default class TaskList extends Vue {

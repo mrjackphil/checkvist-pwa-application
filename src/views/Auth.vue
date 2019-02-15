@@ -9,25 +9,25 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator';
-import router from '@/router';
-import cookie from 'js-cookie';
+import { Vue, Component } from "vue-property-decorator";
+import router from "@/router";
+import cookie from "js-cookie";
 
 @Component({})
 export default class Auth extends Vue {
   private alertMessage = false;
-  private email = '';
-  private pass = '';
+  private email = "";
+  private pass = "";
 
   private async login() {
     try {
       const token = await this.$api.login(this.email, this.pass);
       if (token) {
-        cookie.set('email', this.email, { secure: false });
-        cookie.set('token', token, { secure: false });
+        cookie.set("email", this.email, { secure: false });
+        cookie.set("token", token, { secure: false });
       }
       this.alertMessage = false;
-      router.push('/list');
+      router.push("/list");
     } catch {
       this.alertMessage = true;
     }

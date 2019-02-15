@@ -1,5 +1,5 @@
-export type Methods = 'post' | 'get';
-export type Order = 'id:asc' | 'id:desc' | 'updated_at:asc';
+export type Methods = "post" | "get";
+export type Order = "id:asc" | "id:desc" | "updated_at:asc";
 export type Role = 1 | 2 | 3;
 
 export interface Checklist {

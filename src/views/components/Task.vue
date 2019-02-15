@@ -3,8 +3,8 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from 'vue-property-decorator';
-import { Task as ITask } from '@/entities/datatypes';
+import { Vue, Component, Prop } from "vue-property-decorator";
+import { Task as ITask } from "@/entities/datatypes";
 
 @Component({})
 export default class Task extends Vue {
@@ -15,7 +15,7 @@ export default class Task extends Vue {
   }
 
   private click() {
-    this.$store.commit('editTask', this.task.id);
+    this.$store.commit("editTask", this.task.id);
   }
 }
 </script>
