@@ -4,7 +4,7 @@ export default abstract class IFetcher {
   public login: (
     username: string,
     token: string
-  ) => Promise<string> | undefined = this.login;
+  ) => Promise<string> = this.login;
   public refreshToken: (
     oldToken: string
   ) => Promise<string> | undefined = this.refreshToken;

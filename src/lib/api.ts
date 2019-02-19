@@ -35,7 +35,11 @@ export default class Fetcher implements IFetcher {
 
   public async checklistDelete(id: number) {
     return await this.adapter
-      .delete(`checklists/${id}.json?token=${cookie.get("token")}`)
+      .delete(`checklists/${id}.json`, {
+				data: {
+					token: cookie.get("token")
+				}
+			})
       .then((r) => r.data);
   }
 
