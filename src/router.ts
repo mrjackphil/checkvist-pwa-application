@@ -23,7 +23,8 @@ export default new Router({
       path: "/tasks/:id",
       name: "tasks",
       component: Tasks,
-      meta: { auth: true }
+      meta: { auth: true },
+      props: true
     }
   ]
 });
