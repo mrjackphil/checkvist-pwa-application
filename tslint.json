@@ -9,6 +9,8 @@
 		]
 	},
 	"rules": {
+		"quotemark": [true, "double"],
+		"arrow-parens": false,
 		"trailing-comma": false,
 		"indent": [true, "spaces", 2],
 		"interface-name": false,
