@@ -13,7 +13,7 @@
       <!-- close is method which closes an opened side -->
       <div class="card-content">
         <!-- style content how ever you like -->
-        <h2>{{ item.name }}</h2>
+        <h2 @click="onClick(item.id)">{{ item.name }}</h2>
       </div>
     </template>
     <template slot="left">
@@ -48,6 +48,10 @@ import RemoveList from "./BtnRemoveList.vue";
 export default class SwipeActionList extends Vue {
   @Prop() private items: any[] = this.items;
   private name = "swipe-action-list";
+
+  private onClick(id: number) {
+    this.$router.push(`/tasks/${id}`);
+  }
 }
 </script>
 
