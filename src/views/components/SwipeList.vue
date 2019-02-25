@@ -43,10 +43,11 @@ import { Vue, Component, Prop } from "vue-property-decorator";
 // @ts-ignore
 import { SwipeList, SwipeOut } from "vue-swipe-actions";
 import RemoveList from "./BtnRemoveList.vue";
+import { Checklist } from '@/entities/datatypes';
 
 @Component({ components: { SwipeOut, SwipeList, RemoveList } })
 export default class SwipeActionList extends Vue {
-  @Prop() private items: any[] = this.items;
+  @Prop() private items: Checklist[] = this.items;
   private name = "swipe-action-list";
 
   private onClick(id: number) {
