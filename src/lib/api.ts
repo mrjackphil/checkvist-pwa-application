@@ -36,11 +36,11 @@ export default class Fetcher implements IFetcher {
   public async checklistDelete(id: number) {
     return await this.adapter
       .delete(`checklists/${id}.json`, {
-				data: {
-					token: cookie.get("token")
-				}
-			})
-      .then((r) => r.data);
+        data: {
+          token: cookie.get("token")
+        }
+      })
+      .then(r => r.data);
   }
 
   private async authPost(url: string, opt: any) {

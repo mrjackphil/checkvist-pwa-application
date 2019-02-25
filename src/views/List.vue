@@ -63,7 +63,7 @@ export default class List extends Vue {
     if (val && val !== "loaded-done" && val !== "trigger") {
       this.input = false;
     }
-	}
+  }
 
   private async add() {
     try {
