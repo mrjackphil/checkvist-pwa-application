@@ -42,7 +42,10 @@ export default abstract class IFetcher {
   // taskUpdate: () => {} = this.taskImport;
   // taskStatus: () => {} = this.taskImport;
   // taskRepeat: () => {} = this.taskImport;
-  // taskDelete: () => {} = this.taskImport;
+  public taskDelete: (
+    checklistId: number,
+    taskId: number
+  ) => Promise<Task> | undefined = this.taskDelete;
 
   // note: () => {} = this.note;
   // noteCreate: () => {} = this.note;
