@@ -1,13 +1,10 @@
 import { Checklist, ChecklistOptions, Order, Task } from "./datatypes";
 
 export default abstract class IFetcher {
-  public login: (
-    username: string,
-    token: string
-  ) => Promise<string> = this.login;
-  public refreshToken: (
-    oldToken: string
-  ) => Promise<string> | undefined = this.refreshToken;
+  public login: (username: string, token: string) => Promise<string> = this
+    .login;
+  public refreshToken: (oldToken: string) => Promise<string> | undefined = this
+    .refreshToken;
 
   // userInfo: () => Promise<string> | undefined = this.userInfo;
 
@@ -21,24 +18,26 @@ export default abstract class IFetcher {
   ) => Promise<Checklist> | undefined = this.checklistCreate;
   // checklistUpdate: (id: number, name: string, isPublic?: 0 | 1) =>
   // Promise<Checklist> | undefined = this.checklistUpdate;
-  public checklistDelete: (
-    id: number
-  ) => Promise<Checklist> | undefined = this.checklistDelete;
+  public checklistDelete: (id: number) => Promise<Checklist> | undefined = this
+    .checklistDelete;
 
   // task: (checklistId: number, taskId: number, with_notes?: boolean) =>
   // 	Promise<Task> | undefined = this.task;
-  public tasks: (checklistId: number, withNotes?: boolean, order?: Order) =>
-  Promise<Task[]> | undefined = this.tasks;
+  public tasks: (
+    checklistId: number,
+    withNotes?: boolean,
+    order?: Order
+  ) => Promise<Task[]> | undefined = this.tasks;
 
-  // taskCreate: (
-  // chechlistId: number,
-  // content: string,
-  // parent_id: string,
-  // tags: Tags,
-  // due_date: string,
-  // position: number,
-  // status?: string) =>
-  // Promise<Task> | undefined = this.taskCreate;
+  public taskCreate: (
+    chechlistId: number,
+    content: string,
+    parentId?: string,
+    tags?: string,
+    dueDate?: string,
+    position?: number,
+    status?: string
+  ) => Promise<Task> | undefined = this.taskCreate;
   // taskImport: () => {} = this.taskImport;
   // taskUpdate: () => {} = this.taskImport;
   // taskStatus: () => {} = this.taskImport;

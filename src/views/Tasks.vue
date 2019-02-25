@@ -49,14 +49,14 @@ export default class Tasks extends Vue {
 
   private async add() {
     try {
-      const list = await this.$api.checklistCreate(this.newtask);
+      const list = await this.$api.taskCreate(this.id, this.newtask);
     } catch (err) {
       throw Error(err);
     }
 
     this.newtask = "";
     this.hideAdd("hide");
-    this.flash("List created", "info");
+    this.flash("Task created", "info");
     this.load();
   }
 
