@@ -18,7 +18,6 @@
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
 import { Checklist } from "@/entities/datatypes";
-import Fetcher from "@/entities/api";
 
 import TaskList from "./components/TaskList.vue";
 
