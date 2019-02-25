@@ -9,7 +9,7 @@
       :top-config="pullConfig"
       :distance-index="20"
     >
-      <SwipeTask :items="tasks"/>
+      <SwipeTask :listId="id" :items="tasks" v-on:update="load"/>
     </pull-to>
   </div>
 </template>
