@@ -43,6 +43,16 @@ export default class Fetcher implements IFetcher {
       .then(r => r.data);
   }
 
+  public async tasks(id: number) {
+    return await this.adapter
+      .get(`/checklists/${id}/tasks.json`, {
+        params: {
+          token: cookie.get("token")
+        }
+      })
+      .then(r => r.data);
+  }
+
   private async authPost(url: string, opt: any) {
     const promise = await this.adapter.post(url, jsonToFormData(opt));
     return promise.data;

@@ -1,4 +1,4 @@
-import { Checklist, ChecklistOptions } from "./datatypes";
+import { Checklist, ChecklistOptions, Order, Task } from "./datatypes";
 
 export default abstract class IFetcher {
   public login: (
@@ -27,8 +27,8 @@ export default abstract class IFetcher {
 
   // task: (checklistId: number, taskId: number, with_notes?: boolean) =>
   // 	Promise<Task> | undefined = this.task;
-  // tasks: (checklistId: number, with_notes?: boolean, order?: Order) =>
-  // Promise<Task[]> | undefined = this.tasks;
+  public tasks: (checklistId: number, withNotes?: boolean, order?: Order) =>
+  Promise<Task[]> | undefined = this.tasks;
 
   // taskCreate: (
   // chechlistId: number,
