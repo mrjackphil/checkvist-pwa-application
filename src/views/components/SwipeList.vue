@@ -29,7 +29,7 @@
     <template slot="right" slot-scope="{ item }">
       <!-- remove <template slot="right" slot-scope="{ item }"> if you dont wanna have right swipe side  -->
       <!-- close is method which closes an opened side -->
-      <remove-list :listId="item.id"></remove-list>
+      <remove-list :listId="item.id" :callback="update.bind(this)"></remove-list>
     </template>
     <div slot="empty">
       <!-- change mockSwipeList to an empty array to see this slot in action  -->
@@ -52,6 +52,10 @@ export default class SwipeActionList extends Vue {
 
   private onClick(id: number) {
     this.$router.push(`/tasks/${id}`);
+  }
+
+  private update() {
+    this.$emit("update");
   }
 }
 </script>
