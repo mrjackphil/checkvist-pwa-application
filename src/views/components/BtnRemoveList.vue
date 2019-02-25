@@ -16,9 +16,8 @@ export default class BtnRemoveList extends Vue {
     this.taskId
       ? this.$api.taskDelete(this.listId, this.taskId)
       : this.$api.checklistDelete(this.listId);
-		this.flash("Checklist deleted", "warning");
-		this.callback();
-
+    this.flash("Checklist deleted", "warning");
+    this.callback();
   }
 }
 </script>
