@@ -19,13 +19,11 @@
 import { Vue, Component } from "vue-property-decorator";
 import { Checklist } from "@/entities/datatypes";
 
-import TaskList from "./components/TaskList.vue";
-
 // @ts-ignore
 import PullTo from "vue-pull-to";
 import SwipeActionList from "./components/SwipeList.vue";
 
-@Component({ components: { TaskList, PullTo, SwipeActionList } })
+@Component({ components: { PullTo, SwipeActionList } })
 export default class List extends Vue {
   private checklists: Checklist[] = [];
   private input: boolean = false;
