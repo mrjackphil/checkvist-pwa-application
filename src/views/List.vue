@@ -10,7 +10,7 @@
       :distance-index="20"
     >
       <!-- <task-list :list="checklists"></task-list> -->
-      <swipe-action-list :items="checklists"></swipe-action-list>
+      <swipe-action-list :items="checklists" v-on:update="load"></swipe-action-list>
     </pull-to>
   </div>
 </template>
@@ -63,7 +63,7 @@ export default class List extends Vue {
     if (val && val !== "loaded-done" && val !== "trigger") {
       this.input = false;
     }
-  }
+	}
 
   private async add() {
     try {
